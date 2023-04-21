@@ -2,6 +2,11 @@ package com.inatel.dm102.onlinestore.model;
 
 import java.util.UUID;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Review {
     private String id  = UUID.randomUUID().toString();
     private String title;
@@ -18,57 +23,11 @@ public class Review {
         this.customer = customer;
     }
 
-    public Review() {
+    public void increaseRating() {
+        this.rating++;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescripion() {
-        return description;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescripion(String description) {
-        this.description = description;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    @Override
-    public String toString() {
-        return "Review [id=" + id + ", title=" + title + ", description="
-                + description + ", rating=" + rating + ", product=" + product
-                + ", customer=" + customer + "]";
+    public void decreaseRating() {
+        this.rating--;
     }
 }

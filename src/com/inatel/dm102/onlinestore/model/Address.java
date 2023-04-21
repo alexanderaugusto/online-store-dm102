@@ -2,8 +2,13 @@ package com.inatel.dm102.onlinestore.model;
 
 import java.util.UUID;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Address {
-    private String id  = UUID.randomUUID().toString();
+    private String id = UUID.randomUUID().toString();
     private String street;
     private String number;
     private String complement;
@@ -13,7 +18,12 @@ public class Address {
     private String country;
     private String zipCode;
 
-    public Address(String street, String number, String complement, String neighborhood, String city, String state, String country, String zipCode) {
+    private final String DEFAULT_ZIPCODE = "37540-000";
+    private final String DEFAULT_CITY = "Santa Rita do Sapucaí";
+    private final String DEFAULT_STATE = "Minas Gerais";
+
+    public Address(String street, String number, String complement, String neighborhood, String city, String state,
+            String country, String zipCode) {
         this.street = street;
         this.number = number;
         this.complement = complement;
@@ -24,79 +34,10 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public Address() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public String getComplement() {
-        return complement;
-    }
-
-    public String getNeighborhood() {
-        return neighborhood;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getCountry(){
-        return country;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setStreet(String street){
-        this.street = street;
-    }
-
-    public void setNumber(String number){
-        this.number = number;
-    }
-
-    public void setComplement(String complement){
-        this.complement = complement;
-    }
-
-    public void setNeighborhood(String neighborhood){
-        this.neighborhood = neighborhood;
-    }
-
-    public void setCity(String city){
-        this.city = city;
-    }
-
-    public void setState(String state){
-        this.state = state;
-    }
-
-    public void setCountry(String country){
-        this.country = country;
-    }
-
-    public void setZipCode(String zipCode){
-        this.zipCode = zipCode;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" + "id=" + id + ", street=" + street + ", number=" + number + ", complement=" + complement + ", neighborhood=" + neighborhood + ", city=" + city + ", state=" + state + ", country=" + country + ", zipCode=" + zipCode + '}';
+    public void fillAddressByZipcode() {
+        if (this.zipCode.equals(DEFAULT_ZIPCODE)) {
+            this.city = DEFAULT_CITY;
+            this.state = DEFAULT_STATE;
+        }
     }
 }

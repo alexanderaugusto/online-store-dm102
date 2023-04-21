@@ -2,11 +2,19 @@ package com.inatel.dm102.onlinestore.model;
 
 import java.util.UUID;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Shipping {
     private String id  = UUID.randomUUID().toString();
     private Address address;
     private double price;
     private double deliveryTime;
+
+    private final double DEFAULT_PRICE = 20.0;
+    private final double DEFAULT_DELIVERY_TIME = 10.0;
 
     public Shipping(Address address, double price, double deliveryTime) {
         this.address = address;
@@ -14,40 +22,11 @@ public class Shipping {
         this.deliveryTime = deliveryTime;
     }
 
-    public Shipping() {
+    public void calculateShippingPrice() {
+        this.price = DEFAULT_PRICE;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public double getDeliveryTime() {
-        return deliveryTime;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setDeliveryTime(double deliveryTime) {
-        this.deliveryTime = deliveryTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Shipping [id=" + id + ", address=" + address + ", price="
-                + price + ", deliveryTime=" + deliveryTime + "]";
+    public void calculateDeliveryTime() {
+        this.deliveryTime = DEFAULT_DELIVERY_TIME;
     }
 }

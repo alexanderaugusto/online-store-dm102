@@ -3,15 +3,21 @@ package com.inatel.dm102.onlinestore.model;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Order {
-    private String id  = UUID.randomUUID().toString();
+    private String id = UUID.randomUUID().toString();
     private Customer customer;
     private List<ShoppingCartProduct> products;
     private OrderStatus status;
     private double total;
     private Shipping shipping;
 
-    public Order(Customer customer, List<ShoppingCartProduct> products, OrderStatus status, double total, Shipping shipping) {
+    public Order(Customer customer, List<ShoppingCartProduct> products, OrderStatus status, double total,
+            Shipping shipping) {
         this.customer = customer;
         this.products = products;
         this.status = status;
@@ -19,56 +25,31 @@ public class Order {
         this.shipping = shipping;
     }
 
-    public Order() {
+    public void processOrder(Payment payment) {
+        payment.processPayment();
+        deacreseStock();
+        status = OrderStatus.APPROVED;
+        sendNotificationToCustomer();
     }
 
-    public String getId() {
-        return id;
+    public void deliveryOrder() {
+        status = OrderStatus.DELIVERED;
+        sendNotificationToCustomer();
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public void sendNotificationToCustomer() {
+        Notification notification = new Notification("Order " + id, "Your order was " + status);
+        notification.sendNotification();
     }
 
-    public List<ShoppingCartProduct> getProducts() {
-        return products;
+    public void cancelOrder() {
+        status = OrderStatus.CANCELED;
+        sendNotificationToCustomer();
     }
 
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public Shipping getShipping() {
-        return shipping;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public void setProducts(List<ShoppingCartProduct> products) {
-        this.products = products;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public void setShipping(Shipping shipping) {
-        this.shipping = shipping;
-    }
-
-    @Override
-    public String toString() {
-        return "Order [id=" + id + ", customer=" + customer + ", products="
-                + products + ", status=" + status + ", total=" + total + "]";
+    private void deacreseStock() {
+        for (ShoppingCartProduct product : products) {
+            product.getProduct().deacreseStock(product.getQuantity());
+        }
     }
 }

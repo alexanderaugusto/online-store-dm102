@@ -2,6 +2,11 @@ package com.inatel.dm102.onlinestore.model;
 
 import java.util.UUID;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Payment {
     private String id  = UUID.randomUUID().toString();
     private String type;
@@ -20,67 +25,13 @@ public class Payment {
         this.cardBrand = cardBrand;
     }
 
-    public Payment() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public String getCardHolder() {
-        return cardHolder;
-    }
-
-    public String getCardExpirationDate() {
-        return cardExpirationDate;
-    }
-
-    public String getCardSecurityCode() {
-        return cardSecurityCode;
-    }
-
-    public String getCardBrand() {
-        return cardBrand;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public void setCardHolder(String cardHolder) {
-        this.cardHolder = cardHolder;
-    }
-
-    public void setCardExpirationDate(String cardExpirationDate) {
-        this.cardExpirationDate = cardExpirationDate;
-    }
-
-    public void setCardSecurityCode(String cardSecurityCode) {
-        this.cardSecurityCode = cardSecurityCode;
-    }
-
-    public void setCardBrand(String cardBrand) {
-        this.cardBrand = cardBrand;
-    }
-
-    @Override
-    public String toString() {
-        return "Payment [id=" + id + ", type=" + type + ", cardNumber="
-                + cardNumber + ", cardHolder=" + cardHolder
-                + ", cardExpirationDate=" + cardExpirationDate
-                + ", cardSecurityCode=" + cardSecurityCode + ", cardBrand="
-                + cardBrand + ", cardType=" + "]";
+    public void processPayment() {
+        System.out.println("Processing payment...");
+        System.out.println("Type: " + type);
+        System.out.println("Card Number: " + cardNumber);
+        System.out.println("Card Holder: " + cardHolder);
+        System.out.println("Card Expiration Date: " + cardExpirationDate);
+        System.out.println("Card Security Code: " + cardSecurityCode);
+        System.out.println("Card Brand: " + cardBrand);
     }
 }

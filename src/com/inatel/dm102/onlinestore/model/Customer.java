@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Customer {
-    private String id  = UUID.randomUUID().toString();
+    private String id = UUID.randomUUID().toString();
     private String name;
     private String cpf;
     private String email;
@@ -23,11 +28,8 @@ public class Customer {
         this.password = password;
         this.shoppingCart = new ShoppingCart();
         this.payment = new Payment();
-        this.adresses = new ArrayList<Address>();
-        this.orders = new ArrayList<Order>();
-    }
-
-    public Customer() {
+        this.adresses = new ArrayList<>();
+        this.orders = new ArrayList<>();
     }
 
     public void addAddress(Address address) {
@@ -45,82 +47,5 @@ public class Customer {
 
     public void addOrder(Order order) {
         this.orders.add(order);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
-    }
-
-    public List<Address> getAdresses() {
-        return adresses;
-    }
-
-    public Address getDefaultAddress() {
-        return defaultAddress;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
-    }
-
-    public void setAdresses(List<Address> adresses) {
-        this.adresses = adresses;
-    }
-
-    public void setDefaultAddress(Address defaultAddress) {
-        this.defaultAddress = defaultAddress;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer [id=" + id + ", name=" + name + ", cpf=" + cpf
-                + ", email=" + email + ", password=" + password
-                + ", shoppingCart=" + shoppingCart + ", adresses=" + adresses
-                + ", defaultAddress=" + defaultAddress + ", payment="
-                + payment + ", orders=" + orders + "]";
     }
 }

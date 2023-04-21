@@ -56,9 +56,12 @@ public class OnlineStoreService extends DataInitializer {
 
         System.out.println("\nSetting shipping address...");
         customer.getShoppingCart().setShipping(customerShipping);
+        customer.getShoppingCart().getShipping().calculateShippingPrice();
+        customer.getShoppingCart().getShipping().calculateDeliveryTime();
         customer.getShoppingCart().setPrice(customer.getShoppingCart().getPrice() + customer.getShoppingCart().getShipping().getPrice());
         System.out.println("Shipping address: " + customer.getShoppingCart().getShipping().getAddress().getStreet() + ", " + customer.getShoppingCart().getShipping().getAddress().getNumber());
         System.out.println("Shipping price: " + customer.getShoppingCart().getShipping().getPrice());
+        System.out.println("Shipping time: " + customer.getShoppingCart().getShipping().getDeliveryTime());
 
         System.out.println("\nShopping cart price: " + customer.getShoppingCart().getPrice());
 
@@ -67,26 +70,29 @@ public class OnlineStoreService extends DataInitializer {
         Order order = new Order(customer, customer.getShoppingCart().getProducts(), OrderStatus.PENDING, customer.getShoppingCart().getPrice(), customer.getShoppingCart().getShipping());
 
         System.out.println("\nOrder created with id: " + order.getId());
-        System.out.println("Order status: " + order.getStatus());
-        System.out.println("Order price: " + order.getTotal());
 
-        System.out.println("\nOrder products: ");
+        System.out.println("Order products: ");
         for (ShoppingCartProduct shoppingCartProduct : order.getProducts()) {
             System.out.println(shoppingCartProduct.getProduct().getName() + " - " + shoppingCartProduct.getQuantity());
         }
 
-        System.out.println("\nChanging order status to 'APPROVED'...");
-        order.setStatus(OrderStatus.APPROVED);
+        System.out.println("");
 
-        System.out.println("Order status: " + order.getStatus());
+        order.sendNotificationToCustomer();
 
-        System.out.println("\nChanging order status to 'DELIVERED'...");
-        order.setStatus(OrderStatus.DELIVERED);
+        System.out.println("\nProcessing order...");
+        order.processOrder(customer.getPayment());
 
-        System.out.println("Order status: " + order.getStatus());
+        System.out.println("\nDelivering order..");
+        order.deliveryOrder();
 
-        System.out.println("\nReviewing product " + onlineStoreProducts.get(3).getName() + " with 5 stars...");
-        new Review("\nReviewing PS5", "Very good product!", 5, onlineStoreProducts.get(3), customer);
+        Review review = new Review("\nReviewing PS5", "Very good product!", 0, onlineStoreProducts.get(3), customer);
+        review.increaseRating();
+        review.increaseRating();
+        review.increaseRating();
+        review.increaseRating();
+        review.increaseRating();
+        System.out.println("\nReviewing product " + onlineStoreProducts.get(3).getName() + " with " + review.getRating() + " stars...");
 
         System.out.println("\nFinished order simulation!");
     }

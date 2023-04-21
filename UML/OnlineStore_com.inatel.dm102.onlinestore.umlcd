@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_Iu2yIOBNEe2PgM0Ooneu5A">
+  <modelElement href="../../../../../../OnlineStore.uml#_IJQxwOBNEe2PgM0Ooneu5A"/>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_JCPoMOBNEe2PgM0Ooneu5A" name="OnlineStoreApplication">
+    <modelElement href="../../../../../../OnlineStore.uml#_IKQ3UOBNEe2PgM0Ooneu5A"/>
+    <visualProperties xmi:id="_JCPoMeBNEe2PgM0Ooneu5A" position="50.0,50.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_JCPoMuBNEe2PgM0Ooneu5A" label="+"/>
+    <operations xmi:id="_JCPoM-BNEe2PgM0Ooneu5A" name="main" staticOperation="true">
+      <modelElement href="../../../../../../OnlineStore.uml#_IKW98OBNEe2PgM0Ooneu5A"/>
+      <visibility xmi:id="_JCPoNOBNEe2PgM0Ooneu5A" label="+"/>
+      <cardinality xmi:id="_JCPoNeBNEe2PgM0Ooneu5A" label="1" max="1" min="1"/>
+      <parameters xmi:id="_JCPoNuBNEe2PgM0Ooneu5A" name="args">
+        <modelElement href="../../../../../../OnlineStore.uml#_IKW98eBNEe2PgM0Ooneu5A"/>
+        <cardinality xmi:id="_JCPoN-BNEe2PgM0Ooneu5A" label="1..*" max="-1" min="1"/>
+        <type xmi:id="_JCPoOOBNEe2PgM0Ooneu5A" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_JCxMoOBNEe2PgM0Ooneu5A" name="service">
+    <modelElement href="../../../../../../OnlineStore.uml#_IJRY0OBNEe2PgM0Ooneu5A"/>
+    <visualProperties xmi:id="_JCxMoeBNEe2PgM0Ooneu5A" position="-112.0,46.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_JCxzsOBNEe2PgM0Ooneu5A" name="model">
+    <modelElement href="../../../../../../OnlineStore.uml#_IJYGgOBNEe2PgM0Ooneu5A"/>
+    <visualProperties xmi:id="_JCxzseBNEe2PgM0Ooneu5A" position="293.0,46.0" size="-1.0,-1.0"/>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
